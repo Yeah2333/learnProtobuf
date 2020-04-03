@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package map;
+
+message fdata4
+{
+    float data1 = 1;
+    float data2 = 2;
+    float data3 = 3;
+    float data4 = 4;
+}
+
+message PointType{  //TODO:PointXYZI struct we don't know
+    float x = 1;
+    float y = 2;
+	float z = 3;
+	float intensity = 4;
+}
+
+message PointCloud{ //TODO:PointCloud may need change
+	repeated PointType point = 1;
+}
+
+
+message grid_t{    //finish
+    int32 mapID = 1;
+    int32 cubeX = 2;
+    int32 cubeY = 3;
+    int32 gridX = 4;
+    int32 gridY = 5;
+    int32 gridIndex = 6;
+}
+
+message mapCell_t{  //finish
+    PointType Ptr_xyz = 1;
+    grid_t grid = 2;
+    float log_odds = 3;
+    int32 observeTimes = 4;
+    float occupancy = 5;
+    float occupancyVar = 6;
+    float elevation = 7;
+    float elevationVar = 8;
+}
+
+message mapCell_t_1 //finish
+{
+    repeated mapCell_t Ptr_mapCell_t_1 = 1;
+}
+
+message mapCell_t_2  //finish
+{
+	repeated mapCell_t_1 Ptr_mapCell_t_2 = 1;
+}
+
+message childMap_t{  //finish
+    mapCell_t_2 cellArray = 1;
+    int32 subInd = 2;
+    int32 indX = 3;
+    int32 indY = 4;
+    float originX =5;
+    float originY = 6;
+    PointCloud cloud = 7;
+}
+
+message mapArray{ //finish
+    repeated childMap_t Ptr_childMap_ts = 1;
+}
+
